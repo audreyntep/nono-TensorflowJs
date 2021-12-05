@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Nono's Objects Recognition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheet.css">
+</head>
+<body>
+    <h1>Nono's Objects Recognition POC</h1>
+    <main class="container">
+
+        <div class="btn btn-left">
+            <i class="fas fa-play-circle" id="btn-start" aria-label="Play"></i>
+        </div>
+        <div class="btn btn-right">
+            <i class="fas fa-stop-circle" id="btn-stop" aria-label="Stop"></i>
+        </div>
+
+        <img class="top-frame" src="img/topframe.png" alt="nono top"/>
+        <img id="video-frame" src="img/nono-head.png" alt="nono middle"/>
+        <img class="left-frame" src="img/leftframe.png" alt="nono left"/>
+        <img class="right-frame" src="img/rightframe.png" alt="nono right"/>
+        <video id="video" autoplay class="hidden"></video>
+
+        <audio id="hello" preload="auto" controls src="audio/hello.mp3" class="hidden"></audio>
+        <audio id="showme" preload="auto" controls src="audio/showme.mp3" class="hidden"></audio>
+        <audio id="bye" preload="auto" controls src="audio/bye.mp3" class="hidden"></audio>
+
+    </main>
+    <small>Propulsed by AuSouBa Team</small>
+    <script src="script.js"></script>
+</body>
+</html>
