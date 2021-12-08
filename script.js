@@ -1,14 +1,11 @@
-
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
-var nono = 'OFF';
 
 var captureImage;
 
 function startStreamVideo(){
 
-    nono = 'ON';
-    videoFrame();
+    handleVideoFrame(1);
     document.querySelector('#showme').play();
 
     navigator.mediaDevices.getUserMedia({
@@ -42,8 +39,7 @@ function imageRecognition(){
 function stopStreamedVideo() {
 
     clearInterval(captureImage);
-    nono = 'OFF';
-    videoFrame();
+    handleVideoFrame(0);
     document.querySelector('#bye').play();
 
     const tracks = video.srcObject.getTracks();
@@ -64,12 +60,12 @@ function playAudio(){
     document.querySelector('#hello').play();
 }
 
-function videoFrame(){
+function handleVideoFrame(state){
     const frame = document.getElementById('video-frame');
     const order = document.querySelector('.order');
     const prediction = document.querySelector('.prediction');
 
-    if(nono === 'OFF'){
+    if(state === 0){
         frame.setAttribute("style", "cursor:help");
         frame.addEventListener('mouseover', playAudio);
         video.classList.add('hidden');
@@ -86,7 +82,7 @@ function videoFrame(){
 
 document.addEventListener('DOMContentLoaded', (event) => {
     console.log('DOM fully loaded and parsed. Nono is ready!');
-    videoFrame();
+    handleVideoFrame(0);
     document.querySelector('#btn-start').addEventListener('click', startStreamVideo);
     document.querySelector('#btn-stop').addEventListener('click', stopStreamedVideo);
 });
