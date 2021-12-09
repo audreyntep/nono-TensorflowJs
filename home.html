@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nono's Objects Recognition</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="stylesheet.css">
 </head>
 
@@ -17,42 +17,47 @@
     <h1>Nono's Objects Recognition POC</h1>
     <main class="container">
     <!--button section-->
-        <div class="btn btn-left hidden">
-            <i class="fas fa-play-circle" id="btn-start" aria-label="Play"></i>
+        <div class="btn btn-left hidden" data-audio="play">
+            <i  class="fas fa-play-circle" 
+                id="btn-start"
+                data-audio="play"
+            ></i>
         </div>
-        <div class="btn btn-right hidden">
-            <i class="fas fa-stop-circle" 
+        <div class="btn btn-right hidden"
+            data-audio="stop">
+            <i  class="fas fa-stop-circle" 
                 id="btn-stop"
-                aria-label="Stop"></i>
+                data-audio="stop"
+            ></i>
         </div>
+        
     <!--video frame sections-->
-        <img class="top-frame" src="img/topframe.png" alt="nono top" />
         <div id="loader" class="loader"></div>
 
+        <img class="top-frame" src="img/topframe.png" alt="nono top" />
         <img class="left-frame" src="img/leftframe.png" alt="nono left" />
         <img class="right-frame" src="img/rightframe.png" alt="nono right" />
+        <img id="video-frame" src="img/nono-head.png" alt="nono middle" data-audio="hello"/>
 
-        <a class="order hidden">Show me something!</a>
-        <img id="video-frame" src="img/nono-head.png" alt="nono middle" />
-        <video id="video" autoplay class="hidden"></video>
-        <a class="prediction hidden">It's a <span class="result">... </span></a>
+        <a class="off prediction hidden">I can recognise a <span class="result">... </span></a>
+        <video id="video" autoplay class="off hidden"></video>
         <canvas id="canvas" width="320" height="240" class="hidden"></canvas>
+
     <!--audios-->
-        <audio id="hello" preload="auto" controls src="audio/hello.mp3" class="hidden"></audio>
-        <audio id="showme" preload="auto" controls src="audio/showme.mp3" class="hidden"></audio>
-        <audio id="bye" preload="auto" controls src="audio/bye.mp3" class="hidden"></audio>
+        <audio id="hello" preload="auto" src="audio/hello.mp3"></audio>
+        <audio id="showme" preload="auto" src="audio/showme.mp3"></audio>
+        <audio id="bye" preload="auto" src="audio/bye.mp3"></audio>
 
     </main>
 
     <small>Propulsed by AuSouBa Team</small>
 
-    <script src="script.js"></script>
-
     <!-- Load TensorFlow.js. This is required to use coco-ssd model. -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js" integrity="sha256-pjdJsXnYPdiQhKn0nCgE8Ds/cEYZD98dvEW/unfVnLw=" crossorigin="anonymous"></script>
     <!-- Load the coco-ssd model. -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"> </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd" integrity="sha256-37b6iXyjQMu0EPoWyZUb5jgAirPcOddX0kPWjxBEMFs=" crossorigin="anonymous"></script>
+    <!-- Load the script -->
+    <script src="script.js"></script>
 </body>
 
 </html>
