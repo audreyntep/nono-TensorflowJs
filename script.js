@@ -1,6 +1,8 @@
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
+const btns = document.querySelectorAll('.btn');
 
+var model = undefined;
 var captureImage;
 
 function startStreamVideo(){
@@ -22,9 +24,6 @@ function startStreamVideo(){
 function imageRecognition(){
 
     var result = document.querySelector('.result');
-
-    // Load the model.
-    cocoSsd.load().then(model => {
     // detect objects in the image.
     model.detect(canvas).then(predictions => {
         console.log('Predictions: ', predictions);
@@ -33,7 +32,6 @@ function imageRecognition(){
             result.innerHTML = predictions[0].class;
         }
     });
-});
 }
 
 function stopStreamedVideo() {
@@ -64,6 +62,7 @@ function handleVideoFrame(state){
     const frame = document.getElementById('video-frame');
     const order = document.querySelector('.order');
     const prediction = document.querySelector('.prediction');
+    const loader = document.getElementById('loader');
 
     if(state === 0){
         frame.setAttribute("style", "cursor:help");
@@ -80,8 +79,22 @@ function handleVideoFrame(state){
     }
 }
 
+
 document.addEventListener('DOMContentLoaded', (event) => {
-    console.log('DOM fully loaded and parsed. Nono is ready!');
+    console.log('DOM fully loaded and parsed.');
+
+    //Load model and hide loader
+    cocoSsd.load().then(function (loadedModel) {
+        model = loadedModel;
+        console.log('Model fully loaded. Nono is ready!');
+        if(model !== undefined){
+            document.getElementById('loader').classList.add('hidden');
+            for(i =0 ; i < btns.length; i++){
+                btns[i].classList.remove('hidden');
+            }
+        }
+    });
+
     handleVideoFrame(0);
     document.querySelector('#btn-start').addEventListener('click', startStreamVideo);
     document.querySelector('#btn-stop').addEventListener('click', stopStreamedVideo);
