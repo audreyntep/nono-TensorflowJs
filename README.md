@@ -1,2 +1,2 @@
-# COCO TensorFlow
-A simple object recognition project using Tensorflow model Coco.
+# Coco-ssd TensorFlowJs
+A simple object recognition project using TensorflowJs model [coco-ssd](https://github.com/tensorflow/tfjs-models/tree/master/coco-ssd) trained for object detection.
